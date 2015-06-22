@@ -9,7 +9,7 @@ ENV HOME /root
 
 
 # PHP
-RUN apt-get update && apt-get -y install php5-fpm  php5-mcrypt php5-json php5-curl php-apc php5-gd php5-cli libssh2-php python-setuptools
+RUN apt-get update && apt-get -y install php5-fpm  php5-mcrypt php5-json php5-curl php-apc php5-gd php5-cli libssh2-php python-setuptools curl
 RUN sed -e "s/short_open_tag = Off/short_open_tag = On/g" \
         -e "s/post_max_size = 8M/post_max_size = 20M/g" \
         -e "s/upload_max_filesize = 2M/upload_max_filesize = 20M/g" \
@@ -37,7 +37,6 @@ RUN \
   ln -sf /dev/stdout /var/log/nginx/access.log && \
   ln -sf /dev/stderr /var/log/nginx/error.log && \
   rm -v /etc/nginx/sites-available/default
-
 
 # Install supervisor
 RUN apt-get update && apt-get install -y supervisor && \

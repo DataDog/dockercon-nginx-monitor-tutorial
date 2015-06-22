@@ -23,3 +23,5 @@ loadbalancer:
   build: loadbalancer
   ports:
     - "80:80"
+  links:
+    - web
