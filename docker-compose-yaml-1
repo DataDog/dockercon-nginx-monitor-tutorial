@@ -1,0 +1,12 @@
+datadog:
+  image: datadog/docker-dd-agent
+  environment:
+    - API_KEY
+  privileged: true
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /proc/mounts:/host/proc/mounts:ro
+    - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+  ports:
+    - "8125:8125"
+  command: dd-agent foreground

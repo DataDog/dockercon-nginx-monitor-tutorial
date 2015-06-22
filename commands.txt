@@ -1,0 +1,44 @@
+# docker-machine commands
+
+I recommend running this locally otherwise you need to know a lot of access keys and we don't have a lot of time (any) to troubleshoot issues.
+
+## VMWare Fusion
+
+docker-machine create --driver vmwarefusion <machine name>
+
+## Virtual Box
+
+docker-machine create --driver virtualbox <machine name>
+
+## Amazon Web Services
+(if you don't have environment variables set, replace them with the appropriate text)
+
+docker-machine create -d amazonec2 \
+	--amazonec2-access-key $AWS_ACCESS_KEY_ID \
+	--amazonec2-secret-key $AWS_SECRET_ACCESS_KEY \
+	--amazonec2-ami $ami \
+	--amazonec2-instance-type $instance_size \
+	--amazonec2-vpc-id $vpc_id \
+	--amazonec2-security-group $security_group \
+	--amazonec2-region $aws_region \
+	<machine name>
+
+## Azure
+
+docker-machine create -d azure \
+	--azure-subscription-id=$subscription_id \
+	--azure-subscription-cert=$cert_file_name \
+	<machine name>
+
+## HP Helion
+Log in to the Public Cloud dashboard and click on Access & Security in Compute,  then API Access. Download the OpenStack RC File. Source it to the current terminal, then run the following:
+ 
+docker-machine create -d openstack --openstack-flavor-name $flavor_name \
+ 	--openstack-image-id $image_id \
+	--openstack-floatingip-pool $floating_pool \
+	<machine name>
+
+
+# Run your first container
+
+docker run -it ubuntu

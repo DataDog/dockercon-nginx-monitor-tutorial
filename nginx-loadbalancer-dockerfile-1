@@ -1,0 +1,8 @@
+FROM nginxbase
+
+ADD nginx.service /etc/service/nginx/run
+ADD lbnginx.conf /etc/nginx/conf.d/app.conf
+RUN mkdir -p /tmp/proxy
+RUN mkdir -p /tmp/cache
+
+CMD ["/usr/bin/runsvdir", "/etc/service"]
