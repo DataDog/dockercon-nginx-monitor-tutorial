@@ -12,7 +12,6 @@ datadog:
     - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
   ports:
     - "8125:8125"
-  command: dd-agent foreground
 
 web:
   build: web
