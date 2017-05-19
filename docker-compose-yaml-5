@@ -4,7 +4,7 @@ datadog:
     - web
     - loadbalancer
   environment:
-    - API_KEY
+    - API_KEY={INSERT YOUR API KEY HERE}
   privileged: true
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
@@ -12,7 +12,6 @@ datadog:
     - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
   ports:
     - "8125:8125"
-  command: dd-agent foreground
 
 web:
   build: web
